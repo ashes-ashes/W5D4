@@ -1,7 +1,7 @@
 require_relative '../questionsdatabase.rb'
 
 class QuestionLike
-  attr_accessor :question, :liker
+  attr_accessor :id, :question, :liker
 
   def self.find_by_id(id)
     like = QuestionsDatabase.instance.execute(<<-SQL, id)
@@ -16,6 +16,7 @@ class QuestionLike
   end
 
   def initialize(options)
+    @id = options['id']
     @question = options['question']
     @liker = options['liker']
   end

@@ -1,8 +1,9 @@
 require_relative '../questionsdatabase.rb'
-
+require_relative 'question.rb'
+require_relative 'reply.rb'
 
 class User
-  attr_accessor :fname, :lname
+  attr_accessor :id, :fname, :lname
 
   def self.find_by_id(id)
     person = QuestionsDatabase.instance.execute(<<-SQL, id)
@@ -29,7 +30,13 @@ class User
   end
 
   def initialize(options)
+    @id = options['id']
     @fname = options['fname']
     @lname = options['lname']
   end
+
+  def authored_questions
+    Question.find_by_author_id(id)
+  end
+
 end
