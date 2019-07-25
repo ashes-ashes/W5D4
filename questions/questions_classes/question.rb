@@ -29,10 +29,29 @@ class Question
     Question.new(quest.first)
   end
 
+
   def initialize(options)
     @id = options['id']
     @title = options['title']
     @body = options['body']
     @author_id = options['author_id']
   end
+
+  def author
+    person = QuestionsDatabase.instance.execute(<<-SQL, @author_id)
+      SELECT
+        *
+      FROM
+        users
+      WHERE
+        id = ?
+    SQL
+    User.new(person.first)
+  end
+
+  def replies
+    Reply.find_by_question_id(id)
+  end
+  
+
 end
