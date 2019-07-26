@@ -77,7 +77,8 @@ INSERT INTO replies
 VALUES
   ('Is it a nice egg?', 1, 3, null),
   ('Keep doing push-ups', 2, 1, null),
-  ('Yes it is a very nice egg!', 1, 1, 1);
+  ('Yes it is a very nice egg!', 1, 1, 1),
+  ('Thanks for the egg!', 1, 2, 1);
 
 INSERT INTO question_likes
   (question, liker)
